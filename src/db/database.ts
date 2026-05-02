@@ -5,10 +5,7 @@ let db: Database | null = null;
 
 export async function initDatabase(): Promise<void> {
   const SQL = await initSqlJs({
-    locateFile: (f: string) => {
-      console.log('[sql.js] locateFile requested:', f);
-      return '/' + f;
-    },
+    locateFile: (f: string) => import.meta.env.BASE_URL + f,
   });
 
   const saved = localStorage.getItem(STORAGE_KEY);
