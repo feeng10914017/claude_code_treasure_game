@@ -20,7 +20,12 @@ If the user is not logged in, tell them to run the following in the prompt so th
 ```
 ! gh auth login
 ```
-Then re-run `gh auth status` to confirm login succeeded before continuing.
+
+The command runs in the background. After it starts, read the output file to retrieve the one-time code and display it to the user:
+1. The background task will print its output file path — read that file.
+2. Extract the one-time code (format: `XXXX-XXXX`) from the line `! First copy your one-time code: XXXX-XXXX`.
+3. Tell the user their one-time code and direct them to https://github.com/login/device to complete login.
+4. Wait for the task to complete (the output will show `✓ Authentication complete.`), then re-run `gh auth status` to confirm login succeeded before continuing.
 
 ## Step 3 — Check git repository
 

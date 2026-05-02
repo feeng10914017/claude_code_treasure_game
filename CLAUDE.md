@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm install       # install dependencies
 npm run dev       # start dev server at http://localhost:3000 (auto-opens browser)
 npm run build     # production build → build/ directory
+npm run deploy    # push build/ to GitHub Pages (runs build first manually)
 ```
 
 There is no test runner configured.
@@ -29,7 +30,7 @@ This is a single-page React 18 + TypeScript game built with Vite. All game logic
 
 **UI components**: `src/components/ui/` contains shadcn/ui-style wrappers around Radix UI primitives. These are pre-generated and should not need modification for game features.
 
-**Styling**: Tailwind CSS v4 is pre-compiled into `src/index.css`. Design tokens (CSS custom properties) are defined in `src/styles/globals.css`. Use Tailwind utility classes directly in JSX; do not edit `src/index.css` by hand.
+**Styling**: Tailwind CSS v4 is pre-compiled into `src/index.css`. There is no `tailwind.config.*` file — all Tailwind configuration is inline in `src/index.css`. Design tokens (CSS custom properties) are defined in `src/styles/globals.css`. Use Tailwind utility classes directly in JSX; do not edit `src/index.css` by hand.
 
 **Animations**: Uses `motion/react` (not `framer-motion`) — import as `import { motion } from 'motion/react'`.
 
@@ -43,6 +44,12 @@ This is a single-page React 18 + TypeScript game built with Vite. All game logic
 **Build output**: `build/` (not the default `dist/`).
 
 ## Non-obvious quirks
+
+**Vite base path**: `vite.config.ts` sets `base: '/claude_code_treasure_game/'` for GitHub Pages. All static assets are resolved relative to this path in production builds. The dev server runs at `http://localhost:3000` without this prefix.
+
+**Mixed-language UI**: Auth/database error messages are in Traditional Chinese (e.g., `'資料庫未初始化'`, `'用戶名已存在'`); game UI strings are in English. Keep this consistent when adding new user-facing text.
+
+**Score double-save guard**: `scoreSavedRef` in `App.tsx` prevents `saveScore` from firing twice under React Strict Mode's double-invocation of effects. Do not remove it.
 
 **Vite version aliases**: `vite.config.ts` contains a large block of `'package@version': 'package'` aliases. These exist because the project was scaffolded with versioned import paths and the aliases normalize them. Do not remove them.
 

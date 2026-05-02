@@ -69,7 +69,7 @@ export default function App() {
     setBoxes(prevBoxes => {
       const updatedBoxes = prevBoxes.map(box => {
         if (box.id === boxId && !box.isOpen) {
-          const newScore = box.hasTreasure ? score + 75 : score - 50;
+          const newScore = box.hasTreasure ? score + 50 : score - 50;
           setScore(newScore);
           return { ...box, isOpen: true };
         }
@@ -141,7 +141,7 @@ export default function App() {
           Click on the treasure chests to discover what's inside!
         </p>
         <p className="text-amber-700 text-sm">
-          💰 Treasure: +$75 | 💀 Skeleton: -$50
+          💰 Treasure: +$50 | 💀 Skeleton: -$50
         </p>
       </div>
 
@@ -232,7 +232,7 @@ export default function App() {
                       : 'bg-red-100 text-red-800 border border-red-300'
                   }`}
                 >
-                  {box.hasTreasure ? '+$75' : '-$50'}
+                  {box.hasTreasure ? '+$50' : '-$50'}
                 </motion.div>
               ) : (
                 <div className="text-amber-700 p-2">

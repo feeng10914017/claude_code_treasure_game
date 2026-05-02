@@ -7,7 +7,9 @@
       "Read(//tmp/**)",
       "Bash(npx tsc *)",
       "Bash(vercel *)",
-      "Bash(gh *)"
+      "Bash(gh *)",
+      "Bash(git branch *)",
+      "Bash(npm list *)"
     ]
   }
 }
