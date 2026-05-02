@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(npm install *)",
+      "Read(//tmp/**)",
+      "Bash(npx tsc *)",
+      "Bash(vercel *)",
+      "Bash(gh *)"
+    ]
+  }
+}
